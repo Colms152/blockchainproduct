@@ -1,0 +1,77 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "My Tickets";
+}
+
+<section class="content2 cid-sktwZufd8X" id="content2-s">
+    <h1>My Tickets</h1>
+
+    
+    @foreach (Event eventitem in Model.Events)
+    {
+        
+            @Html.Display(eventitem.eventName);
+        
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Event
+                </th>
+                <th>
+                    Resell Ticket
+                </th>
+                <th>
+                    Redeem Ticket
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Ticket ticket in Model.Tickets)
+            {
+                <tr>
+                    <td>
+                        <a class="btn item-btn btn-primary display-7" asp-controller="Events" asp-action="Details_public" asp-route-id="@ticket.eventId">
+                            @foreach (Event eventitem in Model.Events)
+                            {
+
+                                if (ticket.eventId == eventitem.eventId)
+                                {
+                                    
+                                    @eventitem.eventName;
+                                }
+                            }
+                        </a>
+                    </td>
+                    <td>
+                        @if (ticket.ticketRedeemed == false & ticket.ticketNotAvailable == true)
+                        {
+                            <a class="btn item-btn btn-danger display-7" asp-action="Index" asp-route-id="@ticket.ticketId">Put On Market</a>
+                        }
+                        else if (ticket.ticketRedeemed == false & ticket.ticketNotAvailable == false)
+                        {
+                            <a class="btn item-btn btn-success display-7" asp-action="Index" asp-route-id="@ticket.ticketId">Take Off Market</a>
+                        }
+                        else if (ticket.ticketRedeemed == true)
+                        {
+                            <a class="btn item-btn btn-danger-outline display-7">Unavailable</a>
+                        }
+                    </td>
+                    <td>
+                        @if (ticket.ticketRedeemed == false & ticket.ticketNotAvailable == true)
+                        {
+                            <a class="btn item-btn btn-primary display-7" asp-area=""asp-action="Redeemed" asp-route-id="@ticket.ticketId">Redeem Ticket</a>
+                        }
+                        else
+                        {<a class="btn item-btn btn-warning display-7">Not Available</a>}
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

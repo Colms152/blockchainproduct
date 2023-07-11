@@ -1,0 +1,78 @@
+version: '3.5'
+
+services:
+  # ganachecli: simulated test rpc on dev environment
+  ganache-cli:
+    container_name: ganache-clir
+    build:
+      context: ./ganache
+    #ports:
+    #  - 8545:8545
+    networks:
+      - default
+
+  # truffle-suite
+  # volumes are used here to enable hot editing :) Nice trick!
+  truffle-drizzle:
+    container_name: truffle-drizzler
+    build:
+      context: truffledrizzle
+    healthcheck:
+      test: curl -sf -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' localhost:8545
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: >
+      sh -c "truffle compile &&
+             truffle test &&
+             truffle migrate "
+    ports:
+      - 3000:3000
+    depends_on:
+      - "ganache-cli"  
+    networks:
+      - default  
+    tty: true
+    volumes:
+      - sharedfs:/storage
+
+  node_service:
+    container_name: node_servicer
+    build: ./node_docker_testAPI
+    ports:
+    - "8080:8080"
+    depends_on:
+      - "truffle-drizzle"
+    networks:
+      - default
+    volumes:
+      - sharedfs:/storage    
+  
+  sqlserver:
+    container_name: sqlserver
+    image: alexk002/sqlserver2019_demo:1
+    ports:
+      - "1433:1433"
+    networks:
+      - default
+    restart: unless-stopped
+ 
+  dotnet_testapp:
+    container_name: dotnet_testapp
+    build: ./eventchain
+    ports:
+    - "80:80"  
+    networks:
+    - default   
+   
+            
+
+  
+  
+  
+
+networks:
+  default:
+
+volumes:
+    sharedfs:

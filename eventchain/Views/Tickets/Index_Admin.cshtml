@@ -1,0 +1,53 @@
+﻿@model IEnumerable<eventchain.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ticketNotAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ticketRedeemed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eventID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ticketNotAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ticketRedeemed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eventID.eventId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ticketId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ticketId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ticketId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

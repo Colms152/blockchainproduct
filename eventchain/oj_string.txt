@@ -1,0 +1,7 @@
+  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet-eventchain-92240;Trusted_Connection=True;MultipleActiveResultSets=true"
+  
+
+  Change this string in appsettings.json, TicketController=>ChangeAvailablity & Redeem, EventController =>Buy
+
+    "DefaultConnection": "Data Source=sqlserver;User ID=SA;Password=OcP2020123;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;"
+  

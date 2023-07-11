@@ -1,0 +1,67 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="form7 cid-sktw2IrHMj" id="form7-r">
+
+
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Register!</strong><br />
+                Enter your Details Below!
+            </h3>
+
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form id="account" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="mbr-form form-with-styler mx-auto">
+                    <p class="mbr-text mbr-fonts-style align-center mb-4 display-7">
+                        Please Enter your Details Below
+                    </p>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="">
+                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">
+                            Succesful Login!
+                        </div>
+                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                            Oops...! There seems to be a
+                            problem!
+                        </div>
+                    </div>
+                    <div class="dragArea row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="email">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control" placeholder="Email" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group" data-for="">
+                            <label for="Password_Confirm">Confirm Password</label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Password" id="Password_Confirm" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-auto mbr-section-btn align-center">
+                            <button type="submit" class="btn btn-primary display-4">Register<br></button>
+
+                        </div>
+                        
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

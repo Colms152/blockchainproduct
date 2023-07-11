@@ -1,0 +1,42 @@
+﻿@model eventchain.Models.Ticket
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ticketNotAvailable)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ticketNotAvailable)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ticketRedeemed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ticketRedeemed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.eventID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.eventID.eventId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ticketId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

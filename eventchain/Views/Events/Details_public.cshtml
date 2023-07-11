@@ -1,0 +1,39 @@
+﻿@model eventchain.Models.Event
+@{
+    ViewData["Title"] = "Details";
+}
+
+<section class="features16 cid-sktzPrnyg5" id="features17-x">
+
+
+
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="image-wrapper">
+                        <img src="~/assets/images/@Html.DisplayFor(model => model.photoName) .jpg" alt="Photo">
+                    </div>
+                </div>
+                <div class="col-12 col-lg">
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style display-5">
+                            <strong>@Html.DisplayFor(model => model.eventName)</strong>
+                        </h6>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-4">@Html.DisplayFor(model => model.eventDesc) </p>
+                        <br>
+                        <p class="mbr-text mbr-fonts-style text-danger mb-4 display-4" color="red">@ViewBag.TicketNotAvailable</p>
+                        <div class="mbr-section-btn mt-3">
+
+                            <a class="btn btn-success display-4" style="color: blue" asp-area="" asp-controller="Events" asp-action="Buy_Success" asp-route-id="@Model.eventId">Buy Now</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
